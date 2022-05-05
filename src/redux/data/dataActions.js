@@ -37,11 +37,26 @@ export const fetchData = () => {
         .getState()
         .blockchain.smartContract.methods.WHITELIST_SALE_PRICE()
         .call();
+      let publicSale = await store
+        .getState()
+        .blockchain.smartContract.methods.publicSale()
+        .call();
+      let whiteListSale = await store
+        .getState()
+        .blockchain.smartContract.methods.whiteListSale()
+        .call();
+      let salePaused = await store
+        .getState()
+        .blockchain.smartContract.methods.pause()
+        .call();
       dispatch(
         fetchDataSuccess({
           totalSupply,
           publicCost,
           whiteListCost,
+          publicSale,
+          whiteListSale,
+          salePaused,
           // cost,
         })
       );

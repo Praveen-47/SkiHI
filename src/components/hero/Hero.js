@@ -20,6 +20,8 @@ export const Hero = ({
   connect,
   data,
   blockchain,
+  whitelistMint,
+  error,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -87,10 +89,22 @@ export const Hero = ({
       </Container>
       <Modal open={open} onClose={handleClose}>
         <div className="mint__modal">
-          <h3>Mint NFT</h3>
+          <h3>
+            {data.salePaused == false && data.publicSale == true
+              ? "Public Sale"
+              : data.whiteListSale == true
+              ? "Whitelist Sale"
+              : "Sale Not started yet"}
+          </h3>
+          <p>
+            {(data.salePaused == true && data.publicSale == false) ||
+            data.whiteListSale == false
+              ? "sale not started"
+              : "Sale started"}
+          </p>
           <p>10,000 NFTs</p>
           <div className="balance modal__flex">
-            <h5>Total Supply </h5>
+            <h5>Total Supply</h5>
             <p>{data.totalSupply}</p>
           </div>
           <hr />
@@ -106,15 +120,30 @@ export const Hero = ({
           <hr />
           <div className="total modal__flex">
             <h5>Total</h5>
+            {console.log(data.publicCost)}
             <p>
-              {Web3.utils.fromWei(String(data.publicCost), "ether") *
-                mintAmount}{" "}
+              {data.publicSale == true && data.salePaused == false
+                ? Web3.utils.fromWei(String(data.publicCost), "ether") *
+                  mintAmount
+                : data.whiteListSale == true &&
+                  Web3.utils.fromWei(String(data.whiteListCost), "ether") *
+                    mintAmount}{" "}
               ETH
             </p>
           </div>
           <hr />
-          <button onClick={mint}>MINT</button>
+          <button
+            onClick={
+              data.salePaused == false && data.publicSale == true
+                ? mint
+                : data.whiteListSale == true && whitelistMint
+            }
+            disabled={error ? true : false}
+          >
+            MINT
+          </button>
           <p>{blockchain.account ? blockchain.account : "Not connected"}</p>
+          {error && <p>You are not in whiteList</p>}
         </div>
       </Modal>
     </div>

@@ -5,6 +5,9 @@ const initialState = {
   whiteListCost: 0,
   error: false,
   errorMsg: "",
+  publicSale: false,
+  whiteListSale: false,
+  salePaused: true,
 };
 
 const dataReducer = (state = initialState, action) => {
@@ -23,6 +26,9 @@ const dataReducer = (state = initialState, action) => {
         totalSupply: action.payload.totalSupply,
         publicCost: action.payload.publicCost,
         whiteListCost: action.payload.whiteListCost,
+        publicSale: action.payload.publicSale,
+        whiteListSale: action.payload.whiteListSale,
+        salePaused: action.payload.salePaused,
         error: false,
         errorMsg: "",
       };

@@ -5,6 +5,9 @@ h2 {
   margin-bottom: 66px !important;
   text-shadow: 0px 0px 21px rgb(255 255 255 / 50%);
 }
+.app{
+  background-color: rgb(17,17,17);
+}
 h3 {
   font-size: 24px !important;
   font-weight: 800 !important;
