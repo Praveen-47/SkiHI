@@ -16,7 +16,7 @@ export const Header = () => {
   return (
     <div className="header">
         <div className="logo">
-        <Link to="/"><img src={Logo} alt="" width="346px"/></Link>
+        {/* <Link to="/"><img src={Logo} alt="" width="346px"/></Link> */}
         </div>
         <div className="nav-button" onClick={showMenuHandler}>
             <span className="bar-1"></span>

@@ -4,6 +4,7 @@ const initialState = {
   smartContract: null,
   web3: null,
   errorMsg: "",
+  successMsg: "",
 };
 
 const blockchainReducer = (state = initialState, action) => {
@@ -19,6 +20,7 @@ const blockchainReducer = (state = initialState, action) => {
         loading: false,
         account: action.payload.account,
         smartContract: action.payload.smartContract,
+        successMsg:action.payload.success,
         web3: action.payload.web3,
       };
     case "CONNECTION_FAILED":

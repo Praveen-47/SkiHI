@@ -12,42 +12,37 @@ export const Features = () => {
           </Col>
           <Col md={6}>
             <div className="feature">
-              <h3>BENEFITS</h3>
+              <h3>Lorem ipsum</h3>
               <p>
-                Ownership of an Awakened Human Thoth will help to Awaken your
-                DNA and cellular structure in one of the 14 template programs.
-                If you own all 14, you will awaken all 14 templates. These are
-                in the form of Energetic Elixirs and Remembrance. This is done
-                through the morphic field connection of you to your Awakened
-                Human NFT. Your Awakening is for your benefit and the worlds, as
-                we actively help raise the vibration of ourselves, which then
-                assists the raising of the vibration on Earth.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non
+                mi lacinia, mollis mauris sed, finibus lectus. Cras sit amet
+                condimentum neque. Sed varius urna ante, eget euismod risus
+                tristique eget. Maecenas vehicula massa sit amet tristique
+                pellentesque.
               </p>
             </div>
           </Col>
           <Col md={6}>
             <div className="feature">
-              <h3>PHILOSOPHY</h3>
+              <h3>Lorem ipsum</h3>
               <p>
-                To assist in Awakening humans to their full potential;
-                empowering with the use of technology and the blockchain,
-                programming and energy healing, and DNA activation and teachings
-                for self- empowerment and enlightenment. Assist in awakening
-                individuals, so they in turn create a higher vibrational
-                reality. We utilize pure source, light and unity (Christ)
-                consciousness.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non
+                mi lacinia, mollis mauris sed, finibus lectus. Cras sit amet
+                condimentum neque. Sed varius urna ante, eget euismod risus
+                tristique eget. Maecenas vehicula massa sit amet tristique
+                pellentesque.
               </p>
             </div>
           </Col>
           <Col md={6}>
             <div className="feature last">
-              <h3>COMMON OBJECTIVE</h3>
+              <h3>Lorem ipsum</h3>
               <p>
-                Through NFT’s, teachings, gaming/metaverse: bring in source
-                knowing’s, and activate cellular DNA to connect humans to their
-                highest vibrational and enlightened sovereign state. In turn
-                create a better, more loving world where we are awakened to live
-                in harmony with all.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non
+                mi lacinia, mollis mauris sed, finibus lectus. Cras sit amet
+                condimentum neque. Sed varius urna ante, eget euismod risus
+                tristique eget. Maecenas vehicula massa sit amet tristique
+                pellentesque.
               </p>
             </div>
           </Col>

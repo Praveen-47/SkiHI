@@ -173,3 +173,12 @@
     align-items: center;
     justify-content:center;
 } */
+
+@media only screen and (max-width:399px){
+    .sec-7 h2 {
+        font-size: 30px !important;
+    }
+    h2{
+        font-size: 40px !important;
+    }
+}

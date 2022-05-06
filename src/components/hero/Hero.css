@@ -55,3 +55,104 @@ a.mint:hover{
 .hero img{
     margin-bottom: 50px;
 }
+/* .timer .col-md-3{
+    padding: 20px 50px;
+} */
+.timer{
+    padding: 0px 200px;
+}
+.timer__box{
+    padding: 20px 0px;
+    border: 1px solid #e8db62;
+    text-align: center;
+}
+.timer__box h2{
+    color: #e9c70b !important;
+    margin-bottom: 15px !important;
+    font-size: 60px !important;
+}
+.timer__box h4{
+    font-size: 25px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+@media only screen and (max-width:1399px){
+    .timer{
+        padding: 0px 100px;
+    }
+    .timer__box h4{
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width:1199px){
+    .timer{
+        padding: 0px 200px;
+    }
+    .timer .col-md-3{
+        width: 50%;
+    }
+    .timer__box{
+        margin-bottom: 20px;
+    }
+    .sec-7 h2 {
+        font-size: 45px !important;
+    }
+    .sec-6 {
+        margin-top: 227px !important;
+    }
+    .sec-5 img {
+        bottom: -77px !important;
+    }
+}
+
+@media only screen and (max-width:992px){
+    .timer{
+        padding: 0px 100px;
+    }
+    .about__content {
+        padding-right: 0px !important;
+    }
+    .feature{
+        text-align: center;
+    }
+    .hero{
+        padding-bottom: 50px !important;
+    }
+    .about,.features,.utility,.roadmap,.team{
+        text-align: center !important;
+        padding-bottom: 0 !important;
+    }
+    .faq{
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width:767px){
+    .timer{
+        padding: 0px 50px;
+    }
+}
+@media only screen and (max-width:499px){
+    .timer .col-md-3{
+        width: 100%;
+    }
+    h2{
+        font-size: 50px;
+    }
+    .hero a.whitepaper{
+        width: 100%;
+    display: block;
+    margin-bottom: 40px;
+    }
+    .hero a.mint{
+        margin-left: 0 !important;
+    }
+}
+
+@media only screen and (max-width:600px){
+    .about__img .col-md-6 {
+        width: 100% !important;
+    }
+}

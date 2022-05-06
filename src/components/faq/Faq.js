@@ -32,21 +32,41 @@ export const Faq = () => {
             <div className="question" id="1">
               <h3 onClick={showAnswerHandler} id="1">
                 <img src={Plus} alt="" id="1" />
-                <button id="1">How are Awakened Human NFT’s unique?</button>
+                <button id="1">Lorem ipsum dolor sit amet?</button>
               </h3>
 
               <div className="answer" id="1">
                 <p>
-                  Each image is coded with an energetic elixir/program that will
-                  connect with a buyer’s morphic field and assist in upgrades to
-                  the system: energy healing, remembrance, and increased
-                  vibrational frequency for the highest of the owner.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non
+                mi lacinia, mollis mauris sed, finibus lectus. Cras sit amet
+                condimentum neque. Sed varius urna ante, eget euismod risus
+                tristique eget. Maecenas vehicula massa sit amet tristique
+                pellentesque.
                 </p>
               </div>
             </div>
           </Col>
 
           <Col md={12}>
+            <div className="question" id="2">
+              <h3 onClick={showAnswerHandler} id="2">
+                <img src={Plus} alt="" id="2" />
+                <button id="2">Lorem ipsum dolor sit amet?</button>
+              </h3>
+
+              <div className="answer" id="2">
+                <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non
+                mi lacinia, mollis mauris sed, finibus lectus. Cras sit amet
+                condimentum neque. Sed varius urna ante, eget euismod risus
+                tristique eget. Maecenas vehicula massa sit amet tristique
+                pellentesque.
+                </p>
+              </div>
+            </div>
+          </Col>
+
+          {/* <Col md={12}>
             <div className="question" id="2">
               <h3 onClick={showAnswerHandler} id="2">
                 <img src={Plus} alt="" id="2" />
@@ -225,7 +245,7 @@ export const Faq = () => {
                 </p>
               </div>
             </div>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </div>

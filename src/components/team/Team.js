@@ -17,8 +17,8 @@ export const Team = () => {
                     <div className="team__member">
                         <img src={NFT9} alt="" />
                         <div className="member__details">
-                        <h3>Thoth</h3>
-                        <p>Co-Founder, Blockchain & Technology mastermind</p>
+                        <h3>Lorem ipsum</h3>
+                        <p>Sed varius</p>
                         </div>
                     </div>
                 </Col>
@@ -27,8 +27,8 @@ export const Team = () => {
                     <div className="team__member">
                         <img src={NFT1} alt="" />
                         <div className="member__details">
-                        <h3>Awakened Human- Agar</h3>
-                        <p>Co-founder and Energy Coder</p>
+                        <h3>Lorem ipsum</h3>
+                        <p>Sed varius</p>
                         </div>
                         
                     </div>
@@ -38,7 +38,7 @@ export const Team = () => {
                     <div className="team__member">
                         <img src={NFT11} alt="" />
                         <div className="member__details">
-                        <h3>Social Media Coordinator</h3>
+                        <h3>Lorem ipsum</h3>
                         </div>
                         
                     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import "./Hero.css";
 import NFT12 from "../../assets/images/nft1.jpeg";
@@ -6,6 +6,7 @@ import Minus from "../../assets/images/minus.svg";
 import Plus from "../../assets/images/plus.svg";
 import $ from "jquery";
 import Modal from "@mui/material/Modal";
+import { toast } from "react-toastify";
 
 var Web3 = require("web3");
 
@@ -22,22 +23,73 @@ export const Hero = ({
   blockchain,
   whitelistMint,
   error,
+  pending,
 }) => {
   const [open, setOpen] = useState(false);
+  const [daysTimer , setDays] = useState("00");
+  const [hoursTimer, setHours] = useState("00");
+  const [minutesTimer, setMinutes] = useState("00");
+  const [secondsTimer, setSeconds] = useState("00");
+
+  let interval = useRef();
+
+  const startTimer = ()=>{
+    const countDownDate = new Date('May 30, 2022 00:00:00').getTime();
+    interval = setInterval(()=>{
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(distance % (1000 * 60 * 60 * 24)/ (1000 * 60 * 60))
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((distance % (1000 * 60 )) / 1000)
+
+      if(distance < 0){
+        clearInterval(interval.current);
+      } else{
+        setDays(days);
+        setHours(hours);
+        setMinutes(minutes);
+        setSeconds(seconds);
+      }
+    },1000)
+  }
+
+  useEffect(()=>{
+    startTimer();
+    return ()=>{
+      clearInterval(interval.current);
+    }
+  })
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const displayMintModalHandler = (e) => {
-    e.preventDefault();
-    $(".mint__modal").addClass("show__modal");
-    $(".backdrop").addClass("show-backdrop");
-  };
-
-  const removeModalHandler = () => {
-    $(".mint__modal").removeClass("show__modal");
-    $(".backdrop").removeClass("show-backdrop");
-  };
+  useEffect(() => {
+    if (blockchain?.errorMsg?.length > 0) {
+      toast.error(blockchain?.errorMsg, {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else if (blockchain?.successMsg?.length > 0) {
+      toast.success(blockchain?.successMsg, {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  }, [blockchain]);
 
   console.log(blockchain);
   return (
@@ -48,17 +100,47 @@ export const Hero = ({
             <div className="hero__content">
               <h2>THE PROJECT CATS</h2>
               <img src={NFT12} alt="" width="300px" />
-              <h3>Thoth's Emerald Tablet Collection</h3>
+              <div className="timer">
+                <Row>
+                  <Col md={3}>
+                    <div className="timer__box">
+                      <h2>{daysTimer}</h2>
+                      <h4>Days</h4>
+                    </div>
+                  </Col>
+
+                  <Col md={3}>
+                    <div className="timer__box">
+                      <h2>{hoursTimer}</h2>
+                      <h4>Hours</h4>
+                    </div>
+                  </Col>
+
+                  <Col md={3}>
+                    <div className="timer__box">
+                      <h2>{minutesTimer}</h2>
+                      <h4>Minutes</h4>
+                    </div>
+                  </Col>
+
+                  <Col md={3}>
+                    <div className="timer__box">
+                      <h2>{secondsTimer}</h2>
+                      <h4>Seconds</h4>
+                    </div>
+                  </Col>
+                </Row>
+              </div>
+              {/* <h3>The Project Cats Collections</h3>
               <p className="p1">
-                Awaken your cellular DNA: your power/abilities. More than
-                digital art. Energetic codes are embedded into each of the 2800
-                Thoth's. This is more than owning an NFT. It is empowering you
-                to awaken. Enter the world of Thoth with your very own Energy
-                Elixir- Thoth NFT.
-              </p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam non
+                mi lacinia, mollis mauris sed, finibus lectus. Cras sit amet
+                condimentum neque. Sed varius urna ante, eget euismod risus
+                tristique eget. Maecenas vehicula massa sit amet tristique
+                pellentesque. In id sapien sem. Sed vel pellentesque lorem.
+              </p> */}
               <h4>
-                If you are called to these, you are called for a reason. You are
-                called to remember and awaken.
+                Please Connect Rinkeby Network
               </h4>
               <a href="" className="whitepaper">
                 Join Our Discord
@@ -138,9 +220,9 @@ export const Hero = ({
                 ? mint
                 : data.whiteListSale == true && whitelistMint
             }
-            disabled={error ? true : false}
+            disabled={error || pending ? true : false}
           >
-            MINT
+            {pending === true ? "...PENDING" : "MINT"}
           </button>
           <p>{blockchain.account ? blockchain.account : "Not connected"}</p>
           {error && <p>You are not in whiteList</p>}

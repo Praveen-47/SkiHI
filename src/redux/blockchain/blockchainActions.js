@@ -70,6 +70,7 @@ export const connect = () => {
               account: accounts[0],
               smartContract: SmartContractObj,
               web3: web3,
+              success:"Your Account is Connected"
             })
           );
           // Add listeners start
