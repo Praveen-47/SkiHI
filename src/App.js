@@ -24,8 +24,7 @@ import whiteList from "./utils/Whitelist";
 
 import { MerkleTree } from "merkletreejs";
 import keccak256 from "keccak256";
-import {toast, ToastContainer} from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.min.css';
+
 // const merkleRoot =  (address) => {
 
 // };
@@ -35,7 +34,6 @@ const truncate = (input, len) =>
 
 function App() {
   // const [error, setError]= useState("You are not in whiteList")
-  const [pending,setPending] =useState(false);
   const [isError, setIsError] = useState(false);
   const [merkleProof, setMerkleProof] = useState([]);
   const dispatch = useDispatch();
@@ -65,7 +63,6 @@ function App() {
   });
 
   const claimNFTs = () => {
-    setPending(true);
     let cost = CONFIG.WEI_COST;
     const publicCost = data.publicCost;
     let gasLimit = CONFIG.GAS_LIMIT;
@@ -92,32 +89,10 @@ function App() {
       .once("error", (err) => {
         console.log(err);
         setFeedback("Sorry, something went wrong please try again later.");
-        toast.error("Sorry, something went wrong please try again later.", {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme:'colored'
-          });
-          setPending(false);
         setClaimingNft(false);
       })
       .then((receipt) => {
         console.log(receipt);
-        toast.success(`WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it`, {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme:'colored'
-          });
-          setPending(false);
         console.log(
           `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
         );
@@ -130,22 +105,11 @@ function App() {
   };
 
   const whiteListMint = async () => {
-    setPending(true);
     const whiteListCost = data.whiteListCost;
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalCostWei = String(whiteListCost * mintAmount);
     let totalGasLimit = String(gasLimit * mintAmount);
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
-    toast.success(`Minting your ${CONFIG.NFT_NAME}...`, {
-      position: "top-right",
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme:'colored'
-      })
     setClaimingNft(true);
     blockchain.smartContract.methods
       .whitelistMint(
@@ -165,33 +129,11 @@ function App() {
       })
       .once("error", (err) => {
         console.log(err);
-        toast.error("Sorry, something went wrong please try again later.", {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme:'colored'
-          });
         setFeedback("Sorry, something went wrong please try again later.");
-        setPending(false);
         setClaimingNft(false);
       })
       .then((receipt) => {
         console.log(receipt);
-        toast.success(`WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it`, {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme:'colored'
-          })
-          setPending(false);
         console.log(
           `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
         );
@@ -263,19 +205,17 @@ function App() {
     console.log("Root===>", buf2hex(tree.getRoot()));
     const account = addresses.includes(blockchain.account);
     console.log(account);
-    if(data.whiteListSale == true){
-      if (account) {
-        const leaf = keccak256(blockchain.account); // address from wallet using walletconnect/metamask
-        const proof = tree.getProof(leaf).map((x) => buf2hex(x.data));
-        const proofArray = proof.map((el) => el);
-        setMerkleProof(proofArray);
-        console.log(typeof proofArray, proofArray);
-        setIsError(false);
-        return console.log("proof===>", proof);
-      } else {
-        setMerkleProof([]);
-        return setIsError(true);
-      }
+    if (account) {
+      const leaf = keccak256(blockchain.account); // address from wallet using walletconnect/metamask
+      const proof = tree.getProof(leaf).map((x) => buf2hex(x.data));
+      const proofArray = proof.map((el) => el);
+      setMerkleProof(proofArray);
+      console.log(typeof proofArray, proofArray);
+      setIsError(false);
+      return console.log("proof===>", proof);
+    } else {
+      setMerkleProof([]);
+      return setIsError(true);
     }
   }, [blockchain.account]);
 
@@ -289,7 +229,6 @@ function App() {
             element={
               <React.Fragment>
                 <Hero
-                pending={pending}
                   mint={claimNFTs}
                   decrementMintAmount={decrementMintAmount}
                   incrementMintAmount={incrementMintAmount}
@@ -318,7 +257,6 @@ function App() {
           />
           {/* <Route path="/freebies" element={<Page2/>}/> */}
         </Routes>
-        <ToastContainer/>
       </div>
     </BrowserRouter>
   );
